@@ -68,7 +68,7 @@ class Horse:
         return str(self)
 
 
-def powerset(iterable, min_len=0):
+def power_set(iterable, min_len=0):
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(min_len, 1 + len(s)))
 
@@ -88,7 +88,7 @@ class Lucky:
         self.horses = horses
 
     def winnings(self, total_bet, places):
-        combos = list(powerset(self.horses, 1))
+        combos = list(power_set(self.horses, 1))
         total = Fraction(0)
         for combo in combos:
             total += potential([(x.odds, x.each_way, places[x.name]) for x in combo])
@@ -96,8 +96,8 @@ class Lucky:
         return individual_bet * total
 
 
-def pounds(frac):
-    fp = float(frac)
+def pounds(value):
+    fp = float(value)
     return f'£{fp:.2f}'
 
 
